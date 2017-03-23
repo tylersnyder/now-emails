@@ -11,14 +11,7 @@
     "backpack-core": "^0.2.1"
   },
   "scripts": {
-    "dev": "FROM=\"'fromDisplayName' <fromEmail>\" SENDER_EMAIL=senderEmail SENDER_PASSWORD=senderPassword backpack --debug",
     "build": "backpack build",
     "start": "node ./build/main.js"
-  },
-  "now": {
-    "env": {
-      "SENDER_EMAIL": "sender email",
-      "SENDER_PASSWORD": "sender password"
-    }
   }
 }
