@@ -24,7 +24,7 @@ https://my-now-emails-api.now.sh/?to=bob@site.com&subject=i%20%miss%20%you%20%bo
 
 Optionally, you can use `text` instead of, or together with `html`:
 ```
-https://my-now-emails-api.now.sh/?to=tsnyder@mosscorps.com&subject=i%20%miss%20%you bob&text=hi%20%bob
+https://my-now-emails-api.now.sh/?to=tsnyder@mosscorps.com&subject=i%20%miss%20%you%20%bob&text=hi%20%bob
 ```
 
 You can also define a `from` address such as:
