@@ -1,0 +1,24 @@
+{
+  "name": "now-emails",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "license": "MIT",
+  "dependencies": {
+    "micro": "^7.2.1",
+    "nodemailer": "^3.1.8"
+  },
+  "devDependencies": {
+    "backpack-core": "^0.2.1"
+  },
+  "scripts": {
+    "dev": "FROM=\"'fromDisplayName' <fromEmail>\" AUTH_EMAIL=senderEmail AUTH_PASSWORD=senderPassword backpack --debug",
+    "build": "backpack build",
+    "start": "node ./build/main.js"
+  },
+  "now": {
+    "env": {
+      "AUTH_EMAIL": "sender email",
+      "AUTH_PASSWORD": "sender password"
+    }
+  }
+}
