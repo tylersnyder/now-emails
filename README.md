@@ -1,5 +1,5 @@
 # Now Emails
-Instantly deploy an email sending API to ZEIT Now
+Instantly deploy an email delivery API to now.
 
 ## Deployment
 
@@ -7,7 +7,7 @@ Instantly deploy an email sending API to ZEIT Now
 now -e AUTH_EMAIL=email@gmail.com AUTH_PASSWORD=supersecret tylersnyder/now-emails
 ```
 
-By default, the API will use `Gmail` as the service provider. To use a different provider, specify a `SERVICE` as well:
+By default, the API will use `Gmail` as the service provider. To use a different provider, specify a `SERVICE_PROVIDER`:
 
 ```
 now -e SERVICE_PROVIDER=Hotmail AUTH_EMAIL=email@hotmail.com AUTH_PASSWORD=supersecret tylersnyder/now-emails
