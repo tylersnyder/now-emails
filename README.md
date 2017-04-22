@@ -4,13 +4,13 @@ Instantly deploy an email delivery API to now.
 ## Deployment
 
 ```
-now -e AUTH_EMAIL=email@gmail.com AUTH_PASSWORD=supersecret tylersnyder/now-emails
+now -e AUTH_EMAIL=email@gmail.com -e AUTH_PASSWORD=supersecret tylersnyder/now-emails
 ```
 
 By default, the API will use `Gmail` as the service provider. To use a different provider, specify a `SERVICE_PROVIDER`:
 
 ```
-now -e SERVICE_PROVIDER=Hotmail AUTH_EMAIL=email@hotmail.com AUTH_PASSWORD=supersecret tylersnyder/now-emails
+now -e SERVICE_PROVIDER=Hotmail -e AUTH_EMAIL=email@hotmail.com -e AUTH_PASSWORD=supersecret tylersnyder/now-emails
 ```
 
 To learn more about supported service providers, read more at [nodemailer.com](https://nodemailer.com/smtp/well-known/)
