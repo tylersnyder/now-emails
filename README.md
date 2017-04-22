@@ -4,32 +4,28 @@ Instantly deploy an email sending API to ZEIT Now
 ## Deployment
 
 ```
-now -e SENDER_EMAIL=email@gmail.com SENDER_PASSWORD=supersecret tylersnyder/now-emails
+now -e AUTH_EMAIL=email@gmail.com AUTH_PASSWORD=supersecret tylersnyder/now-emails
 ```
 
 By default, the API will use `Gmail` as the service provider. To use a different provider, specify a `SERVICE` as well:
 
 ```
-now -e SERVICE=Hotmail SENDER_EMAIL=email@hotmail.com SENDER_PASSWORD=supersecret tylersnyder/now-emails
+now -e SERVICE_PROVIDER=Hotmail AUTH_EMAIL=email@hotmail.com AUTH_PASSWORD=supersecret tylersnyder/now-emails
 ```
 
 To learn more about supported service providers, read more at [nodemailer.com](https://nodemailer.com/smtp/well-known/)
 
 ## Usage
 
-Once deployed, you can start sending emails by making `GET` requests in this format:
+Emails can be sent by making a `POST` request to your service. The body of this request should include:
 ```
-https://my-now-emails-api.now.sh/?to=bob@site.com&subject=i%20%miss%20%you%20%bob&html=<b>hi%20%bob</b>
-```
-
-Optionally, you can use `text` instead of, or together with `html`:
-```
-https://my-now-emails-api.now.sh/?to=tsnyder@mosscorps.com&subject=i%20%miss%20%you%20%bob&text=hi%20%bob
-```
-
-You can also define a `from` address such as:
-```
-https://my-now-emails-api.now.sh/?to=bob@site.com&from=Moose%20%<mydog@mysite.com>&subject=i%20%miss%20%you%20%bob&html=<b>hi%20%bob</b>
+{
+  "to": "test@email.com",
+  "subject": "sending emails",
+  "text": "hello world!",
+  "html": "hello <b>world</b>!",
+  "from": "Myself <myself@domain.com>" // optional
+}
 ```
 
-Keep in mind, Gmail does not allow you to overwrite the sender adress. It will however pick up the display name, in this case `Moose`.
+You can specify only "text" or "html", or both. The "from" address is optional, but keep in mind Gmail does not allow you to overwrite the sender adress. Gmail will however use the display name, in this case `Myself`.

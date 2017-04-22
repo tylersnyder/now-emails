@@ -1,40 +1,46 @@
-import micro, { send } from 'micro'
-import { parse } from 'url'
-import { sendMail } from './util'
+const { send, createError, json } = require('micro')
+const { sendMail } = require('./util')
+const { AUTH_EMAIL } = process.env
 
-const server = micro(async(req, res) => {
+module.exports = async(req, res) => {
   try {
-    const { query } = parse(req.url, true)
-    const { to, subject, text, html } = query
+    if (req.method !== 'POST') {
+      throw createError(405, 'Method Not Allowed.')
+    }
+
+    const { to, from = AUTH_EMAIL, subject, text, html } = await json(req)
 
     if (!to) {
-      throw new Error('missing to address')
+      throw createError(500, `Missing to address.`)
     }
     
     if (!subject) {
-      throw new Error('missing subect')
+      throw createError(500, 'Missing subject.')
     }
     
     if (!text && !html) {
-      throw new Error('missing text and html')
+      throw createError(500, 'Missing text or html.')
     }
 
-    const from = query.from || process.env.AUTH_EMAIL
-    
-    const options = {
+    const info = await sendMail({
       from,
       to,
       subject,
       text,
       html
-    }
-
-    const info = await sendMail(options)
-    send(res, 200, info.response)
+    })
+    
+    send(res, 200, {
+      code: 200,
+      status: 'success',
+      message: info.response,
+      data: info
+    })
   } catch(err) {
-    send(res, 200, err.message)
+    send(res, err.statusCode, {
+      code: err.statusCode,
+      status: 'error',
+      message: err.message
+    })
   }
-})
-
-server.listen(3000)
-console.log('listening on port 3000')
+}

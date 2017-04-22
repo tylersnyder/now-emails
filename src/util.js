@@ -1,14 +1,17 @@
-import nodemailer from 'nodemailer'
+const { createTransport } = require('nodemailer')
+const { SERVICE_PROVIDER, AUTH_EMAIL, AUTH_PASSWORD } = process.env
 
-const transport = nodemailer.createTransport({
-  service: process.env.SERVICE || 'Gmail',
+const transport = createTransport({
+  service: SERVICE_PROVIDER || 'Gmail',
   auth: {
-    user: process.env.SENDER_EMAIL,
-    pass: process.env.SENDER_PASSWORD
+    user: AUTH_EMAIL,
+    pass: AUTH_PASSWORD
   }
 })
 
-export const sendMail = (options) => {
+module.exports.sendMail = sendMail
+
+function sendMail(options) {
   return new Promise(resolve => (
     transport.sendMail(options, (err, info) => {
       if (err) {
