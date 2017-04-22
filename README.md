@@ -28,4 +28,4 @@ Emails can be sent by making a `POST` request to your service. The body of this 
 }
 ```
 
-You can specify only "text" or "html", or both. The "from" address is optional, but keep in mind Gmail does not allow you to overwrite the sender adress. Gmail will however use the display name, in this case `Myself`.
+You can specify `text`, `html`, or both. The `from` address is optional, but keep in mind Gmail does not allow you to overwrite the sender adress. Gmail will however use the display name, in this case `Myself`.
