@@ -11,7 +11,7 @@
     "nodemon": "^1.11.0"
   },
   "scripts": {
-    "dev": "AUTH_EMAIL='test' AUTH_PASSWORD='test' nodemon --exec npm start",
+    "dev": "AUTH_EMAIL='' AUTH_PASSWORD='' nodemon --exec npm start",
     "start": "micro src/index"
   }
 }
